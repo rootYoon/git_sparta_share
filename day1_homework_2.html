@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기획서(레이아웃)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <style>
+        .wrap {
+            margin: 30px auto;
+            width: 700px;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 30px;
+            font-family: 'Do Hyeon', sans-serif;
+        }
+
+        .photo_zone {
+            width: 500px;
+            height: 300px;
+            background-color: green;
+            margin: auto auto 20px auto;
+            background-image: url(https://t1.daumcdn.net/cfile/tistory/264EBC3956024BA608);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .order_size {
+            width: 400px;
+        }
+
+        .text_bold {
+            font-size: 28px;
+            font-weight: bold;
+            margin: auto 10px auto auto;
+        }
+
+        .text_center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 상품사진 -->
+        <div class="photo_zone">
+            <span></span>
+        </div>
+        <!-- 상품제목 -->
+        <div>
+            <p><span class="text_bold">*용왕도 탐내는 토끼 간*</span><span>가격 : 1,000,000원 / 개</span></p>
+            <p>이 상품으로 말할 것 같으면 용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지 상혐제의 숨결이 고루 녹아 있는 먹으면 120세까지 살 수 있다는 이 상품으로 말할 것 같으면
+                용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지..</p>
+        </div>
+        <!-- 주문하기 -->
+        <div class="order_size">
+            <p class="text_bold">주문하기</p>
+            <p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함: </span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">수량: </label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>&lt;-- 수량을 선택하세요. --&gt;</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">주소: </span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">전화번호: </span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+            </p>
+        </div>
+        <!-- 주문완료 -->
+        <div class="text_center">
+            <button type="button" class="btn btn-light ">주문하기</button>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>
