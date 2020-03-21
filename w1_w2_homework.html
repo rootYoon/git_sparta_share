@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;간 때문이야. 피곤은 토끼 간 때문이야&gt;</title>
+    <title>&lt;간 때문이야. 피곤은 간 때문이야&gt;</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
@@ -57,23 +57,23 @@
             let orderAdd = $('#orderAdd').val();
             let orderCell = $('#orderCell').val();
             if (Name == "") {
-                alert('이름을 입력해 주세요.')
+                alert('주문자 성함을 입력해 주세요!')
                 $('#orderName').focus()
             } else if (orderNumNull == "&lt;" + "-- 수량을 선택하세요. --" + "&gt;") {
-                alert('수량을 선택해 주세요.')
+                alert('수량을 선택해 주세요!')
                 $('#orderName').focus()
             } else if (orderAdd == "") {
-                alert('주소를 입력해 주세요.')
+                alert('주소를 입력해 주세요!')
                 $('#orderAdd').focus();
             } else if (orderCell == '') {
-                alert('번호를 입력해 주세요.')
+                alert('번호를 입력해 주세요!')
                 $('#orderCell').focus()
             } else {
                 let temp_html = '<tr>\
                     <td>'+ Name + '</td>\
                     <td>'+ orderNumNull + '</td>\
                     <td>'+ orderAdd + '</td>\
-                    <td>'+ orderCell + '/td>\
+                    <td>'+ orderCell + '</td>\
                     </tr>'
                 $('.orderList').append(temp_html);
             }
@@ -91,7 +91,7 @@
         <!-- 상품제목 -->
         <div>
             <p><span class="text_bold">*용왕도 탐내는 토끼 간*</span><span>가격 : 1,000,000원 / 개</span></p>
-            <h5 style="margin: 1px auto;">&lt;간 때문이야. 피곤은 때문이야&gt;</h4>
+            <h5 style="margin: 1px auto;">&lt;간 때문이야. 피곤은 간 때문이야&gt;</h4>
                 <p>이 상품으로 말할 것 같으면 용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지 상혐제의 숨결이 고루 녹아 있는 먹으면 120세까지 살 수 있다는 이 상품으로 말할 것
                     같으면
                     용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지..</p>
@@ -102,14 +102,14 @@
             <p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함: </span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함</span>
                     </div>
                     <input id="orderName" type="text" class="form-control" aria-label="Default"
                         aria-describedby="inputGroup-sizing-default">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01">수량: </label>
+                        <label class="input-group-text" for="inputGroupSelect01">수량</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01">
                         <option selected>&lt;-- 수량을 선택하세요. --&gt;</option>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">주소: </span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
                     </div>
                     <input id="orderAdd" type="text" class="form-control" aria-label="Default"
                         aria-describedby="inputGroup-sizing-default">
@@ -128,7 +128,7 @@
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">전화번호: </span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
                     </div>
                     <input id="orderCell" type="text" class="form-control" aria-label="Default"
                         aria-describedby="inputGroup-sizing-default">
@@ -142,7 +142,7 @@
         <br>
         <table class="orderList">
             <tr>
-                <td>이름</td>
+                <td>주문자 성함</td>
                 <td>수량</td>
                 <td>주소</td>
                 <td>전화번호</td>
