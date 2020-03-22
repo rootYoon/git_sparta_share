@@ -53,15 +53,15 @@
     <script>
         function orderBTN() {
             let Name = $('#orderName').val();
-            let orderNumNull = $('#inputGroupSelect01').val();
+            let orderNumNull = $('#inputGroupSelect01 Option:selected').val();
             let orderAdd = $('#orderAdd').val();
             let orderCell = $('#orderCell').val();
             if (Name == "") {
                 alert('주문자 성함을 입력해 주세요!')
                 $('#orderName').focus()
-            } else if (orderNumNull == "&lt;" + "-- 수량을 선택하세요. --" + "&gt;") {
+            } else if (orderNumNull == '<-- 수량을 선택하세요. -->') {
                 alert('수량을 선택해 주세요!')
-                $('#orderName').focus()
+                $('#inputGroupSelect01').focus()
             } else if (orderAdd == "") {
                 alert('주소를 입력해 주세요!')
                 $('#orderAdd').focus();
@@ -112,7 +112,7 @@
                         <label class="input-group-text" for="inputGroupSelect01">수량</label>
                     </div>
                     <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>&lt;-- 수량을 선택하세요. --&gt;</option>
+                        <option vlaue="" selected>&lt;-- 수량을 선택하세요. --&gt;</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
