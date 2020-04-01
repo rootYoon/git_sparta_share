@@ -1,0 +1,40 @@
+.wrap {
+	margin: 30px auto;
+	width: 700px;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 30px;
+	font-family: "Yeon Sung", cursive;
+}
+
+.photo_zone {
+	width: 500px;
+	height: 300px;
+	background-color: green;
+	margin: auto auto 20px auto;
+	background-image: url(https://t1.daumcdn.net/cfile/tistory/264EBC3956024BA608);
+	background-position: center;
+	background-size: cover;
+}
+
+.order_size {
+	width: 400px;
+}
+
+.text_bold {
+	font-size: 28px;
+	font-weight: bold;
+	margin: auto 10px auto auto;
+}
+
+.text_center {
+	text-align: center;
+}
+
+.orderList {
+	text-align: center;
+	border-top: 1px solid gray;
+	width: 600px;
+	margin: 0 auto;
+}
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&lt;간 때문이야. 피곤은 간 때문이야&gt;</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/mystyle.css') }}">
+    <script>
+        $(document).ready(function () {
+            $("#orderList").html("");
+            listing();
+        });
+
+        function orderBTN() {
+            let Name = $('#orderName').val();
+            let orderNumNull = $('#inputGroupSelect01 Option:selected').val();
+            let orderAdd = $('#orderAdd').val();
+            let orderCell = $('#orderCell').val();
+            if (Name == "") {
+                alert('주문자 성함을 입력해 주세요!')
+                $('#orderName').focus()
+            } else if (orderNumNull == '<-- 수량을 선택하세요. -->') {
+                alert('수량을 선택해 주세요!')
+                $('#inputGroupSelect01').focus()
+            } else if (orderAdd == "") {
+                alert('주소를 입력해 주세요!')
+                $('#orderAdd').focus();
+            } else if (orderCell == '') {
+                alert('번호를 입력해 주세요!')
+                $('#orderCell').focus()
+            } else {
+                // let temp_html = '<tr>\
+                //     <td>'+ Name + '</td>\
+                //     <td>'+ orderNumNull + '</td>\
+                //     <td>'+ orderAdd + '</td>\
+                //     <td>'+ orderCell + '</td>\
+                //     </tr>'
+                // $('#orderList').append(temp_html);
+                $.ajax({
+                    type: "POST",
+                    url: "/orders",
+                    data: { "requestName": Name, "requestOrderNum": orderNumNull, "requestAdd": orderAdd, "requestCell": orderCell },
+                    success: function (response) {
+                        if (response["result"] == "success") {
+                            alert(response["msg"]);
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        }
+        function listing() {
+            // 1. 리뷰 목록을 서버에 요청하기
+            // 2. 요청 성공 여부 확인하기
+            // 3. 요청 성공했을 때 리뷰를 올바르게 화면에 나타내기
+            $.ajax({
+                type: "GET",
+                url: "/orders",
+                data: {},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        // alert(response["msg"]);
+                        // 2. 성공했을 때 리뷰를 올바르게 화면에 나타내기
+                        let orders = response['orders'];
+                        for (let i = 0; i < orders.length; i++) {
+                            make_card(orders[i]['Name'], orders[i]['orderNumNull'], orders[i]['orderAdd'], orders[i]['orderCell']);
+                        }
+                    } else {
+                        alert("리뷰를 받아오지 못했습니다");
+                    }
+                }
+            });
+        }
+
+        function make_card(Name, orderNumNull, orderAdd, orderCell) {
+            let temp_html =
+                '<tr>\
+            <td>'+ Name + '</td>\
+            <td>'+ orderNumNull + '</td>\
+            <td>'+ orderAdd + '</td>\
+            <td>'+ orderCell + '</td>\
+            </tr>'
+            $('#orderList').append(temp_html);
+        }
+
+        function inputPhoneNumber(obj) {
+            var number = obj.value.replace(/[^0-9]/g, "");
+            var phone = "";
+            if (number.length < 4) {
+                return number;
+            } else if (number.length < 7) {
+                phone += number.substr(0, 3);
+                phone += "-";
+                phone += number.substr(3);
+            } else if (number.length < 11) {
+                phone += number.substr(0, 3);
+                phone += "-";
+                phone += number.substr(3, 3);
+                phone += "-";
+                phone += number.substr(6);
+            } else {
+                phone += number.substr(0, 3);
+                phone += "-";
+                phone += number.substr(3, 4);
+                phone += "-";
+                phone += number.substr(7);
+            }
+            obj.value = phone;
+        }
+
+        function checkNum(e) {
+            var keyVal = event.keyCode;
+
+            if (((keyVal >= 48) && (keyVal <= 57))) {
+                return true;
+            }
+            else {
+                alert("숫자만 입력가능합니다");
+                return false;
+            }
+        }
+    </script>
+    <style>
+        .tableWrap {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 상품사진 -->
+        <div class="photo_zone">
+            <span></span>
+        </div>
+        <!-- 상품제목 -->
+        <div>
+            <p><span class="text_bold">*용왕도 탐내는 토끼 간*</span><span>가격 : 1,000,000원 / 개</span></p>
+            <h5 style="margin: 1px auto;">&lt;간 때문이야. 피곤은 간 때문이야&gt;</h4>
+                <p>이 상품으로 말할 것 같으면 용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지 상혐제의 숨결이 고루 녹아 있는 먹으면 120세까지 살 수 있다는 이 상품으로 말할 것
+                    같으면
+                    용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지..</p>
+        </div>
+        <!-- 주문하기 -->
+        <div class="order_size">
+            <p class="text_bold">주문하기</p>
+            <p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함</span>
+                    </div>
+                    <input id="orderName" type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option vlaue="" selected>&lt;-- 수량을 선택하세요. --&gt;</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+                    </div>
+                    <input id="orderAdd" type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+                    </div>
+                    <input id="orderCell" type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default" maxlength="13" onKeyPress="return checkNum(event)"
+                        onKeyup="inputPhoneNumber(this);">
+                </div>
+            </p>
+        </div>
+        <!-- 주문완료 -->
+        <div class=" text_center">
+            <button onclick="orderBTN()" type="button" class="btn btn-light ">주문하기</button>
+        </div>
+        <br>
+        <div>
+            <table class="tableWrap">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead>
+                    <th>주문자 성함</th>
+                    <th>수량</th>
+                    <th>주소</th>
+                    <th>전화번호</th>
+                </thead>
+                <tbody id="orderList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
